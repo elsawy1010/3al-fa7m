@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>قريبًا — صفحة هبوط متجاوبة</title>
+  <style>
+    :root{
+      --bg: #ffffff;
+      --card: #ffffff;
+      --primary: #0b76ef; /* fallback */
+      --accent: #0b76ef;
+      --text: #111827;
+      --muted: #6b7280;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Cairo", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg) 0%, #f7f9fc 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .container{
+      width:100%;
+      max-width:1000px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.5));
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(2,6,23,0.08);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:0;
+      align-items:stretch;
+      transition:transform .7s cubic-bezier(.2,.9,.2,1), box-shadow .4s;
+    }
+
+    .container:hover{transform:translateY(-6px); box-shadow:0 22px 44px rgba(2,6,23,0.12)}
+
+    .left{
+      padding:48px 36px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      justify-content:center;
+    }
+
+    .eyebrow{
+      font-size:14px;
+      color:var(--muted);
+      letter-spacing:0.6px;
+      opacity:0;
+      transform:translateY(8px);
+      animation:fadeUp .8s .2s forwards;
+    }
+
+    h1{
+      margin:0;
+      font-size:40px;
+      line-height:1.02;
+      letter-spacing:0.2px;
+      opacity:0;
+      transform:translateY(14px);
+      animation:fadeUp .8s .4s forwards;
+    }
+
+    p.lead{
+      margin:0;
+      color:var(--muted);
+      max-width:60ch;
+      opacity:0;
+      transform:translateY(16px);
+      animation:fadeUp .8s .6s forwards;
+    }
+
+    .cta-row{
+      margin-top:20px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      opacity:0;
+      transform:translateY(18px);
+      animation:fadeUp .8s .8s forwards;
+    }
+
+    .btn{
+      border:0;
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:600;
+      cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease;
+      box-shadow:0 8px 20px rgba(11,118,239,0.12);
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      color:white;
+    }
+    .btn:active{transform:translateY(2px)}
+
+    .ghost{
+      background:transparent;
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,0.06);
+    }
+
+    .right{
+      background:radial-gradient(circle at 10% 10%, rgba(255,255,255,0.6), transparent),
+                 linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+      padding:28px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+
+    .logo-wrap{
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.65));
+      box-shadow:0 10px 40px rgba(11,118,239,0.12);
+      transition:transform .9s cubic-bezier(.2,.9,.2,1), box-shadow .4s;
+      transform-origin:center;
+      overflow:hidden;
+    }
+
+    .logo{
+      max-width:72%;
+      max-height:72%;
+      transform:translateZ(0);
+      will-change:transform, filter, opacity;
+      transition:transform .9s cubic-bezier(.2,.9,.2,1), filter .6s;
+      filter:drop-shadow(0 8px 18px rgba(2,6,23,0.06));
+    }
+
+    /* subtle hovering orbit */
+    .logo-wrap:hover{transform:scale(1.04) rotate(-2deg)}
+    .logo:hover{transform:scale(1.03) rotate(2deg)}
+
+    .decor{
+      position:absolute;
+      width:420px; height:420px;
+      border-radius:50%;
+      right:-60px; top:-80px;
+      pointer-events:none;
+      opacity:.14;
+      transform:rotate(16deg) scale(1.06);
+      background:conic-gradient(from 180deg at 50% 50%, rgba(11,118,239,0.12), transparent 40%);
+      filter:blur(18px);
+    }
+
+    @keyframes fadeUp{
+      to{opacity:1; transform:none}
+    }
+
+    /* responsive */
+    @media (max-width:900px){
+      .container{grid-template-columns:1fr; max-width:760px}
+      .right{padding:38px}
+      .logo-wrap{width:200px;height:200px}
+    }
+    @media (max-width:520px){
+      body{padding:18px}
+      h1{font-size:32px}
+      .left{padding:28px}
+      .logo-wrap{width:160px;height:160px}
+    }
+
+    footer.small{
+      margin-top:8px;
+      font-size:13px;
+      color:var(--muted)
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="eyebrow">قريبًا</div>
+      <h1>نطلق قريبًا — احفظ التاريخ وكن أول من يعرف</h1>
+      <p class="lead">هذه صفحة هبوط بسيطة ومتجاوبة تعرض شعارك، وتستخرج ألوان الشعار تلقائيًا لتنسيق الواجهة. يمكنك تعديل النص أو الروابط بسهولة.</p>
+
+      <div class="cta-row">
+        <button class="btn" id="notify">أعلمني أولًا</button>
+        <button class="ghost" id="follow">متابعة</button>
+      </div>
+
+      <footer class="small">حقوق النشر © شركتك — جميع الحقوق محفوظة</footer>
+    </div>
+
+    <div class="right">
+      <div class="decor" aria-hidden="true"></div>
+      <div class="logo-wrap" id="logoWrap">
+        <!-- default placeholder logo path: replace assets/logo.png with your file -->
+        <img id="logoImg" class="logo" src="logo.png" alt="شعار الشركة">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Utility: sample average color of the logo to theme the page
+    (function(){
+      const img = document.getElementById('logoImg');
+      const root = document.documentElement;
+
+      function setCSSVars(primary){
+        root.style.setProperty('--primary', primary);
+        root.style.setProperty('--accent', primary);
+
+        // set text color for contrast
+        const rgb = primary.match(/\d+/g).map(Number);
+        const luminance = (0.299*rgb[0]+0.587*rgb[1]+0.114*rgb[2])/255;
+        root.style.setProperty('--text', luminance>0.6? '#0b1220' : '#ffffff');
+        root.style.setProperty('--muted', luminance>0.6? '#6b7280' : 'rgba(255,255,255,0.75)');
+
+        // adapt background slightly
+        if(luminance>0.6){
+          root.style.setProperty('--bg', '#ffffff');
+        } else {
+          root.style.setProperty('--bg', '#0b1220');
+          root.style.setProperty('--card', 'rgba(255,255,255,0.04)');
+        }
+      }
+
+      function rgbToCss(r,g,b){return `rgb(${r}, ${g}, ${b})`}
+
+      function sampleImageColor(image){
+        const canvas = document.createElement('canvas');
+        const w = 40, h = 40; // small for performance
+        canvas.width = w; canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        try{
+          ctx.drawImage(image, 0, 0, w, h);
+        }catch(e){
+          // cross-origin or not loaded
+          return null;
+        }
+        const data = ctx.getImageData(0,0,w,h).data;
+        let r=0,g=0,b=0,count=0;
+        for(let i=0;i<data.length;i+=4){
+          const alpha = data[i+3];
+          if(alpha<40) continue; // skip transparent
+          r+=data[i]; g+=data[i+1]; b+=data[i+2]; count++;
+        }
+        if(!count) return null;
+        r=Math.round(r/count); g=Math.round(g/count); b=Math.round(b/count);
+        return rgbToCss(r,g,b);
+      }
+
+      function onImageReady(){
+        const sampled = sampleImageColor(img);
+        if(sampled){
+          setCSSVars(sampled);
+        } else {
+          // fallback palette — no sampling (CORS or missing file)
+          setCSSVars('rgb(11,118,239)');
+        }
+      }
+
+      if(img.complete && img.naturalWidth!==0){
+        onImageReady();
+      } else {
+        img.addEventListener('load', onImageReady);
+        img.addEventListener('error', ()=>{
+          // if image not found, use fallback and show placeholder text
+          img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"400\" height=\"400\"><rect width=\"100%\" height=\"100%\" fill=\"#f3f4f6\"/><text x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Cairo,Arial\" font-size=28\" fill=\"#9ca3af\">ضع ملف logo.png داخل مجلد assets</text></svg>`);
+          setCSSVars('rgb(37,99,235)');
+        });
+      }
+
+      // Add micro-interactions for buttons
+      document.getElementById('notify').addEventListener('click', function(e){
+        this.animate([{transform:'translateY(0)'},{transform:'translateY(-6px)'},{transform:'translateY(0)'}],{duration:420});
+        this.textContent = 'تم التسجيل — شكرًا!';
+      });
+      document.getElementById('follow').addEventListener('click', function(){
+        this.animate([{opacity:1},{opacity:0.6},{opacity:1}],{duration:380});
+        window.open('https://instagram.com','_blank');
+      });
+
+      // Parallax tilt on mouse move for the right side
+      const wrap = document.getElementById('logoWrap');
+      document.querySelector('.right').addEventListener('mousemove', (e)=>{
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        wrap.style.transform = `perspective(900px) translateZ(0) rotateY(${x*6}deg) rotateX(${ -y*6 }deg)`;
+      });
+      document.querySelector('.right').addEventListener('mouseleave', ()=>{
+        wrap.style.transform = '';
+      });
+
+    })();
+  </script>
+</body>
+</html>
