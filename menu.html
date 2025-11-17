@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مطعم الحبايب | المنيو</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --main-color: #f1c40f;
+      --accent-color: #f1c40f;
+      --bg-color: #a3a3a3;
+      --text-color: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+      scroll-behavior: smooth;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    header {
+      background: var(--main-color);
+      color: white;
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    header img{
+      width: 100px;
+      height: 600px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-bar img {
+      height: 60px;
+      border-radius: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: var(--main-color);
+        flex-direction: column;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        text-align: center;
+        transition: max-height 0.4s ease;
+      }
+
+      .nav-links.open {
+        max-height: 300px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-links a {
+        padding: 14px 0;
+        display: block;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    h1 {
+      color: var(--main-color);
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 30px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .search, select {
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      width: 260px;
+      font-size: 15px;
+      outline: none;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    .search:focus, select:focus {
+      border-color: var(--main-color);
+      box-shadow: 0 0 8px rgba(211, 84, 0, 0.3);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      animation: fadeIn 1s ease;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      color: var(--main-color);
+      margin: 12px 0 6px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #666;
+      padding: 0 10px;
+      min-height: 40px;
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--accent-color);
+      margin: 8px 0 14px;
+      font-size: 18px;
+    }
+
+    footer {
+      background: var(--main-color);
+      color: white;
+      text-align: center;
+      padding: 16px;
+      margin-top: 50px;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav-bar">
+      <a href="index.html">
+        <img src="logo.png" alt="شعار المطعم">
+      </a>
+      <span class="menu-toggle" id="menuToggle">☰</span>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">الرئيسية</a>
+        <a href="menu.html">المنيو</a>
+        <a href="offers.html">العروض</a>
+        <a href="contact.html">تواصل معنا</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>قائمة الطعام</h1>
+    <div class="topbar">
+      <input id="search" class="search" placeholder="ابحث عن طبق أو وصف..." />
+      <select id="filterCategory">
+        <option value="">كل الأقسام</option>
+      </select>
+    </div>
+    <div id="menuGrid" class="grid"></div>
+  </main>
+
+  <footer>
+    © 2025 مطعمنا | جميع الحقوق محفوظة
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script>
+    // قائمة الموبايل
+    const toggleBtn = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggleBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !toggleBtn.contains(e.target)) {
+        navLinks.classList.remove('open');
+      }
+    });
+
+    // رابط الشيت الأصلية القديمة
+    const MENU_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSiio3bHGUweUwWhUpBwcTQc_3NIeUUIPZjVFqqZXl80V0gI_ozXUqeTcJXooHPFuMfVYzGULYyQCWB/pub?output=csv';
+
+    const menuGrid = document.getElementById('menuGrid');
+    const searchInput = document.getElementById('search');
+    const filterCategory = document.getElementById('filterCategory');
+    let items = [];
+
+    function escapeHtml(s) {
+      return String(s || '').replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[m]));
+    }
+
+    function render(itemsToShow) {
+      menuGrid.innerHTML = '';
+      if (!itemsToShow.length) {
+        menuGrid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#666">لا يوجد عناصر متاحة حالياً</p>';
+        return;
+      }
+
+      itemsToShow.forEach(it => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          ${it['الصورة'] ? `<img src="${escapeHtml(it['الصورة'])}" alt="${escapeHtml(it['الاسم'])}">` : ''}
+          <h3>${escapeHtml(it['الاسم'] || '')}</h3>
+          <p>${escapeHtml(it['الوصف'] || '')}</p>
+          <div class="price">${escapeHtml(it['السعر'] || '')} جنيه</div>
+        `;
+        menuGrid.appendChild(card);
+      });
+    }
+
+    function populateCategories() {
+      const cats = Array.from(new Set(items.map(i => i['القسم']).filter(Boolean)));
+      filterCategory.innerHTML = '<option value="">كل الأقسام</option>' +
+        cats.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+    }
+
+    function filterAndSearch() {
+      const q = searchInput.value.trim().toLowerCase();
+      const cat = filterCategory.value;
+      const filtered = items.filter(i => {
+        const text = ((i['الاسم'] || '') + ' ' + (i['الوصف'] || '') + ' ' + (i['القسم'] || '')).toLowerCase();
+        return (cat === '' || i['القسم'] === cat) && (!q || text.includes(q));
+      });
+      render(filtered);
+    }
+
+    Papa.parse(MENU_CSV, {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      complete: function (res) {
+        items = res.data;
+        populateCategories();
+        render(items);
+      },
+      error: function (err) {
+        menuGrid.innerHTML = '<p style="color:red">حدث خطأ أثناء تحميل قائمة الطعام.</p>';
+        console.error(err);
+      }
+    });
+
+    searchInput.addEventListener('input', filterAndSearch);
+    filterCategory.addEventListener('change', filterAndSearch);
+  </script>
+</body>
+</html>
